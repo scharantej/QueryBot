@@ -2,22 +2,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Q&A with Gemini</title>
-<link rel="stylesheet" href="style.css">
+<title>Book Search</title>
 </head>
 <body>
-<h1>Ask Me Anything</h1>
-<form method="POST" action="/submit_query">
-<label for="query">Question:</label>
-<input type="text" id="query" name="query" required>
-<input type="submit" value="Submit">
+<h1>Book Search</h1>
+<form action="/search">
+<input type="text" name="search_term">
+<input type="submit" value="Search">
 </form>
-<div id="previous_queries">
-<h2>Previous Queries</h2>
-<ul>
-<!-- List of previous queries will be displayed here -->
-</ul>
-</div>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Author</th>
+<th>Genre</th>
+<th>Publication Date</th>
+</tr>
+</thead>
+<tbody>
+{% for book in books %}
+<tr>
+<td>{{ book.id }}</td>
+<td><a href="/book/{{ book.id }}">{{ book.title }}</a></td>
+<td>{{ book.author }}</td>
+<td>{{ book.genre }}</td>
+<td>{{ book.publication_date }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
 </body>
 </html>
+
+
 
